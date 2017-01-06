@@ -32,8 +32,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :animal_id %>
-    <%= f.text_field :animal_id %>
+    <%= select_tag(:animal_id, options_for_select([['North'], ['East'], ['South'], ['West']])) %>
   </div>
 
   <div class="actions">
