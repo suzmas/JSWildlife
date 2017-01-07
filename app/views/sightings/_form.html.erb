@@ -27,12 +27,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :region %>
-    <%= f.text_field :region %>
+    <%= f.label :animal_id %>
+    <%= f.text_field :animal_id %>
   </div>
 
+  <!-- <div class="field">
+    <%= f.label :region %>
+    <%= f.text_field :region %>
+  </div> -->
+
   <div class="field">
-    <%= select_tag(:animal_id, options_for_select([['North'], ['East'], ['South'], ['West']])) %>
+    <%= select_tag(:region, options_for_select([['North', 'North'], ['East', 'East'], ['South', 'South'], ['West', 'West']])) %>
   </div>
 
   <div class="actions">

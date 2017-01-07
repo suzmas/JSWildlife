@@ -17,3 +17,26 @@
 
 <%= link_to 'Edit', edit_animal_path(@animal) %> |
 <%= link_to 'Back', animals_path %>
+
+
+
+<!-- In here we'll put a list of current sightings associated with this animal. Put in unordered list. -->
+<hr/>
+<ul id="sighting_list">
+  <% @animal.sightings.each do |sighting| %>
+    <li><%= sighting.date %> - <%= sighting.region %></li>
+  <% end %>
+</ul>
+<hr/>
+  <!-- This requires the model to have a 'has_many' declared so that a .wines method is available
+  => This means HAS_MANY creates a method on that object that returns ALL of that object's referenced object
+
+  to interact in ajax, we'll use a form and input field like this: -->
+<input type="date" name="sighting[date]" id="sighting_date" placeholder="Date of Sighting"/>
+<input type="text" name="sighting[lat]" id="sighting_lat" placeholder="Latitude"/>
+<input type="text" name="sighting[long]" id="sighting_long" placeholder="Longitude"/>
+<input type="text" name="sighting[region]" id="sighting_region" placeholder="Region"/>
+<input type="hidden" name="sighting[animal_id]" id="animal_id" value="<%= @animal.id %>" />
+<button id="create_sighting">Create</button>
+
+<!-- We won't use a form because an HTML doc automatically assumes a form to take params. Instead, we want the button to operate on the db without reloading the page... so we'll use JQuery to operate on the #create_sighting button- put this jquery in your app's assets > javascripts folder. Make the file called animals.js and add the jquery onClick stuff for that button. -->
