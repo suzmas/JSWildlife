@@ -29,6 +29,7 @@ $(document).ready(function(){
 
 
   $("#create_sighting").on("click", function() {
+    alert("Registered click event");
     var date = $("#sighting_date").val();
     var lat = $("#sighting_lat").val();
     var long = $("#sighting_long").val();
@@ -72,5 +73,5 @@ function add_to_animal_list(animal) {
 }
 
 function add_to_sightings_list(dataFromServer) {
-  $("#sighting_list").append("<li>"+ dataFromServer.date + " " + dataFromServer.region + "</li>")
+  $("#sighting_list").prepend("<li>"+ dataFromServer.date + " " + dataFromServer.region + "</li>")
 }
