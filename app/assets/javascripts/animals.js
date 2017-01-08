@@ -35,8 +35,7 @@ $(document).ready(function(){
     var long = $("#sighting_long").val();
     var region = $("#sighting_region").val();
     var animal_id = $("#animal_id").val();
-    alert(date);
-    newSighting = {
+    var newSighting = {
       "sighting": {
         "date": date,
         "lat": lat,
@@ -44,7 +43,7 @@ $(document).ready(function(){
         "region": region,
         "animal_id": animal_id
       }
-    }
+    };
     // alert(JSON.stringify(newSighting));
     $.ajax({
       datatype: 'json',
@@ -54,6 +53,38 @@ $(document).ready(function(){
       success: function(dataFromServer) {
         alert("Received message : " + JSON.stringify(dataFromServer));
         add_to_sightings_list(dataFromServer);
+
+        $("#create_sighting").on("click", function() {
+          alert("Registered click event");
+          var date = $("#sighting_date").val();
+          var lat = $("#sighting_lat").val();
+          var long = $("#sighting_long").val();
+          var region = $("#sighting_region").val();
+          var animal_id = $("#animal_id").val();
+          var newSighting = {
+            "sighting": {
+              "date": date,
+              "lat": lat,
+              "long": long,
+              "region": region,
+              "animal_id": animal_id
+            }
+          };
+          // alert(JSON.stringify(newSighting));
+          $.ajax({
+            datatype: 'json',
+            url: '/sightings',
+            method: 'post',
+            data: newSighting,
+            success: function(dataFromServer) {
+              alert("Received message : " + JSON.stringify(dataFromServer));
+              add_to_sightings_list(dataFromServer);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              alert("Add new sighting failed: " + errorThrown);
+            }
+          });
+        });
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert("Add new sighting failed: " + errorThrown);
