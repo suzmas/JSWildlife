@@ -28,7 +28,8 @@ class SightingsController < ApplicationController
 
     respond_to do |format|
       if @sighting.save
-        format.html { redirect_to @sighting, notice: 'Sighting was successfully created.' }
+        format.html { redirect_to animal_path(@sighting.animal_id) }
+          #redirect_to @sighting, notice: 'Sighting was successfully created.' }
         format.json { render :show, status: :created, location: @sighting }
       else
         format.html { render :new }
@@ -69,6 +70,6 @@ class SightingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sighting_params
-      params.require(:sighting).permit(:date, :lat, :long, :animal_id)
+      params.require(:sighting).permit(:date, :lat, :long, :region, :animal_id)
     end
 end
