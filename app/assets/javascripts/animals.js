@@ -11,18 +11,18 @@ $(document).ready(function(){
         "kingdom": kingdom,
       }
     }
-    alert(JSON.stringify(newAnimal));
+    //alert(JSON.stringify(newAnimal));
     $.ajax({
       datatype: 'json',
       url: '/animals',
       method: 'post',
       data: newAnimal,
       success: function(dataFromServer) {
-        alert("Received message : " + JSON.stringify(dataFromServer));
+        //alert("Received message : " + JSON.stringify(dataFromServer));
         add_to_animal_list(dataFromServer);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert("Add new animal failed: " + errorThrown);
+        //alert("Add new animal failed: " + errorThrown);
       }
     });
   });
@@ -45,7 +45,7 @@ $(document).ready(function(){
         "animal_id": animal_id
       }
     }
-    alert(JSON.stringify(newSighting));
+    // alert(JSON.stringify(newSighting));
     $.ajax({
       datatype: 'json',
       url: '/sightings',
