@@ -29,13 +29,13 @@ $(document).on('turbolinks:load', function(){
 
 
   $("#create_sighting").on("click", function() {
-    alert("Registered click event");
+    // alert("Registered click event");
     var date = $("#sighting_date").val();
     var lat = $("#sighting_lat").val();
     var long = $("#sighting_long").val();
     var region = $("#sighting_region").val();
     var animal_id = $("#animal_id").val();
-    alert(date);
+    // alert(date);
     newSighting = {
       "sighting": {
         "date": date,
@@ -52,7 +52,7 @@ $(document).on('turbolinks:load', function(){
       method: 'post',
       data: newSighting,
       success: function(dataFromServer) {
-        alert("Received message : " + JSON.stringify(dataFromServer));
+        // alert("Received message : " + JSON.stringify(dataFromServer));
         add_to_sightings_list(dataFromServer);
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -64,14 +64,16 @@ $(document).on('turbolinks:load', function(){
 
 
 function add_to_animal_list(animal) {
-  $("tbody").prepend("<tr>" +
+  $("tbody").append("<tr>" +
     "<td>"+ animal.name +"</td>" +
     "<td>"+ animal.latin_name +"</td>" +
     "<td>"+ animal.kingdom +"</td>" +
-    "<td>"+ animal.name +"</td>" +
+    "<td><a href='/animals/"+ animal.id + "'>Show</a></td>" +
+    "<td><a href='/animals/"+ animal.id + "/edit'>Edit</a></td>" +
+    "<td><a data-confirm='Are you Sure?' rel='nofollow' data-method='delete' href='/animals/"+ animal.id +"'>Destroy</a></td>" +
   "</tr>");
 }
 
-function add_to_sightings_list(dataFromServer) {
-  $("#sighting_list").prepend("<li>"+ dataFromServer.date + " " + dataFromServer.region + "</li>")
+function add_to_sightings_list(sighting) {
+  $("#sighting_list").prepend("<li>"+ sighting.date + " " + sighting.region + "</li>")
 }
