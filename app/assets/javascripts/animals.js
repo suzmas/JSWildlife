@@ -1,5 +1,5 @@
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   $("#create_animal").on("click", function() {
     var name = $("#animal_name").val();
     var latin_name = $("#animal_latin_name").val();
