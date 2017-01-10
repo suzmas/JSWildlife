@@ -7,6 +7,14 @@ class SightingsController < ApplicationController
     @sightings = Sighting.all
   end
 
+  def get_events
+    @sightings = Sighting.all
+    events = []
+    @sightings.each do |sighting|
+      events << { id: sighting.id, start: sighting.date, title: sighting.animal.name }
+    end
+    render json: events.to_json
+  end
   # GET /sightings/1
   # GET /sightings/1.json
   def show
